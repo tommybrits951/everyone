@@ -9,17 +9,19 @@ const {logger, logEvent} = require("./middleware/logger")
 const PORT = process.env.PORT || 9000;
 const path = require("path")
 const app = express()
-
+const fileUpload = require("express-fileupload")
 connectDB()
+app.use(fileUpload())
 app.use(logger)
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/user", require("./routes/userRoutes"))
 app.use("/auth", require("./routes/authRoutes"))
+app.use("/mess", require("./routes/messageRoutes"))
+app.use("/friends", require("./routes/friendRoutes"))
 
-
-
+app.use("/images", express.static("images"))
 
 
 

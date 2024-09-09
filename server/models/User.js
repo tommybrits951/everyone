@@ -31,7 +31,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    image_path: String,
+    image_path: {
+        type: String,
+        default: "default.jpg"
+    },
     friends: [{type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }]
